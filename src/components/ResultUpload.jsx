@@ -5,18 +5,34 @@ const ResultUpload = () => {
   const [className, setClassName] = useState("");
   const [year, setYear] = useState("");
   const [pdf, setPdf] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({ hasError: false, msg: "" });
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async () => {
+    setLoading(true);
+    setError({ hasError: false });
+    setSuccess(false);
+
     const bodyFormData = new FormData();
     bodyFormData.append("className", className);
     bodyFormData.append("year", year);
     bodyFormData.append("pdf", pdf);
 
-    const res = await http.post("/result", bodyFormData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+    try {
+      const res = await http.post("/result", bodyFormData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-    console.log(res);
+      console.log(res);
+      setSuccess(true);
+    } catch (ex) {
+      if (ex.response) {
+        console.log(ex.response.data);
+        setError({ hasError: true, msg: ex.response.data.msg });
+      }
+    }
+    setLoading(false);
   };
 
   return (
@@ -52,6 +68,12 @@ const ResultUpload = () => {
               onChange={({ target }) => setPdf(target.files[0])}
             />
           </div>
+          {loading && <p className="msg">loading.....</p>}
+          {error.hasError && <p className="error msg">{error.msg}</p>}
+          {success && (
+            <p className="success msg">"Result successfully upladed"</p>
+          )}
+
           <button onClick={handleSubmit}>Upload</button>
         </div>
       </div>

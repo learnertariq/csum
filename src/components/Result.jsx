@@ -1,16 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import http from "../service/http";
+import resultService from "../service/resultService";
 
 const Result = () => {
+  const [uiClassNames, setUiClassNames] = useState([]);
+  const [uiYears, setUiYears] = useState([]);
   const [className, setClassName] = useState("");
   const [year, setYear] = useState("");
   const [pdf, setPdf] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [resultLoading, setResultLoading] = useState(false);
+  const [uiDataLoading, setUiDataLoading] = useState(false);
   const [error, setError] = useState({ hasError: false, msg: "" });
 
-  const handleSearch = async () => {
-    setLoading(true);
+  const setInitialData = (cName, yName) => {
+    setClassName(cName);
+    setYear(yName);
+  };
+
+  const getUiData = async () => {
+    setUiDataLoading(true);
     setError({ hasError: false });
+
+    try {
+      const { data } = await resultService.getUiData();
+      console.log(data);
+      setUiClassNames(data.data.classNames);
+      setUiYears(data.data.years);
+      setInitialData(data.data.classNames[0], data.data.years[0]);
+      setUiDataLoading(false);
+    } catch (ex) {
+      if (ex.response) setError({ hasError: true, msg: ex.response.data.msg });
+      setUiDataLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getUiData();
+  }, []);
+
+  const handleSearch = async () => {
+    setResultLoading(true);
+    setError({ hasError: false });
+    setPdf(null);
 
     try {
       const { data } = await http.post("/result/download", {
@@ -19,9 +50,10 @@ const Result = () => {
       });
 
       setPdf(data.data.pdf);
-      setLoading(false);
+      setResultLoading(false);
     } catch (ex) {
       if (ex.response) setError({ hasError: true, msg: ex.response.data.msg });
+      setResultLoading(false);
     }
   };
 
@@ -41,12 +73,14 @@ const Result = () => {
                 setClassName(target.value);
               }}
             >
-              <option value="class 1">Class 1</option>
-              <option value="class 2">Class 2</option>
-              <option value="class 3">Class 3</option>
-              <option value="class 10">Class 10</option>
+              {uiClassNames.map((className) => (
+                <option key={className} value={className}>
+                  {className}
+                </option>
+              ))}
             </select>
           </div>
+
           <div className="form-group">
             <label htmlFor="year">Year</label>
             <br />
@@ -56,15 +90,18 @@ const Result = () => {
               value={year}
               onChange={({ target }) => setYear(target.value)}
             >
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
+              {uiYears.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
             </select>
           </div>
-          {error.hasError && <p className="error">{error.msg}</p>}
+
+          {error.hasError && <p className="error msg">{error.msg}</p>}
+          {pdf && <p className="success msg">Click Download Button</p>}
+          {resultLoading && <p className="msg">Loading..........</p>}
+
           <button
             onClick={handleSearch}
             className="btn btn--primary result_refress-btn"
@@ -73,7 +110,7 @@ const Result = () => {
           </button>
           <br />
 
-          {loading ? (
+          {resultLoading || !pdf ? (
             <a className="btn btn--danger result_download-btn disabled">
               Download
             </a>

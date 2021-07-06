@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+const Footer = ({ user }) => {
   return (
     <footer className="footer-section">
       <div className="footer">
@@ -27,10 +27,42 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="footer_contacts">
+        <div className="footer_links footer_user-links">
+          <ul className="list footer_list">
+            {!user && (
+              <>
+                <li className="list_item footer_item">
+                  <Link to="/login" className="link footer_link">
+                    Login
+                  </Link>
+                </li>
+                <li className="list_item footer_item">
+                  <Link to="/register" className="link footer_link">
+                    Register
+                  </Link>
+                </li>
+              </>
+            )}
+            {user && (
+              <>
+                <li className="list_item footer_item">
+                  <Link to="/me" className="link footer_link">
+                    {user.name}
+                  </Link>
+                </li>
+                <li className="list_item footer_item">
+                  <Link to="/logout" className="link footer_link">
+                    Logout
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+        {/* <div className="footer_contacts">
           <div className="footer_phone">+৮৮০ ১৭১১ ১১১১১১</div>
           <div className="footer_email">example@email.com</div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

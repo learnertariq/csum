@@ -18,12 +18,12 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="list_item nav_item">
-            <Link to="about" className="link nav_link">
+            <Link to="/about" className="link nav_link">
               মাদরাসা পরিচিতি
             </Link>
           </li>
           <li className="list_item nav_item">
-            <Link to="notices" className="link nav_link">
+            <Link to="/notices" className="link nav_link">
               নোটিস
             </Link>
           </li>
