@@ -1,12 +1,10 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
-});
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
 export default {
-  get: axiosInstance.get,
-  post: axiosInstance.post,
-  put: axiosInstance.put,
-  delete: axiosInstance.delete,
+  get: axios.get,
+  post: axios.post,
+  put: axios.put,
+  delete: axios.delete,
 };
