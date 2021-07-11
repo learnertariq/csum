@@ -8,9 +8,8 @@ const NavBar = () => {
         <Link to="/" className="nav_home-link">
           <h1 className="nav_heading">শামসুল উলুম মাদরাসা</h1>
         </Link>
-        <div className="nav_address">চাঁদখালী, পাইকগাছা, খুলনা</div>
-        <div className="nav_phone">+৮৮০ ১৭১১ ১১১১১১</div>
-        <div className="nav_email">example@email.com</div>
+
+        {/* <div className="nav_email">example@email.com</div> */}
         <ul className="list nav_list">
           <li className="list_item nav_item">
             <Link to="/result" className="link nav_link">

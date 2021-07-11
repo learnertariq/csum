@@ -9,6 +9,7 @@ const Me = () => {
         <div>
           <Link to="/resultUpload">Upload Result</Link>
           <Link to="/latestNewsUpload">Update Latest News</Link>
+          <Link to="/documentUpload">Upload Document</Link>
         </div>
       </div>
     </section>

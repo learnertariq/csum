@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import userService from "../service/userService";
+import Input from "./common/Input";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,27 +34,21 @@ const Login = () => {
     <section className="register-section">
       <div className="register">
         <div className="form">
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={({ target }) => setEmail(target.value)}
-            />
-          </div>
+          <Input
+            type="email"
+            name="email"
+            label="Email"
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
+          />
 
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={({ target }) => setPassword(target.value)}
-            />
-          </div>
+          <Input
+            type="password"
+            name="password"
+            label="Password"
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+          />
 
           {loading && <p className="msg">loading.....</p>}
           {error.hasError && <p className="error msg">{error.msg}</p>}

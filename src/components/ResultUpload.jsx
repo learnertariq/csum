@@ -10,6 +10,7 @@ const ResultUpload = () => {
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async () => {
+    console.log(pdf);
     setLoading(true);
     setError({ hasError: false });
     setSuccess(false);
@@ -26,13 +27,14 @@ const ResultUpload = () => {
 
       console.log(res);
       setSuccess(true);
+      setLoading(false);
     } catch (ex) {
       if (ex.response) {
         console.log(ex.response.data);
         setError({ hasError: true, msg: ex.response.data.msg });
       }
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

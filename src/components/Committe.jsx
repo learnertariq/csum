@@ -1,5 +1,4 @@
 import React from "react";
-import Table from "./common/Table";
 
 const data = [
   {
@@ -39,7 +38,7 @@ const Committe = () => {
     <section className="committe-info-section">
       <div className="committe-info">
         <h2 className="committe-info_heading">Committe Info</h2>
-        <Table data={data} />
+        {/* <Table data={data} /> */}
       </div>
     </section>
   );

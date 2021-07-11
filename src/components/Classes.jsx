@@ -1,5 +1,4 @@
 import React from "react";
-import Table from "./common/Table";
 
 const data = [
   {
@@ -27,7 +26,7 @@ const Classes = () => {
     <section className="classes-info-section">
       <div className="classes-info">
         <h2 className="classes-info_heading">Classes Info</h2>
-        <Table data={data} />
+        {/* <Table data={data} /> */}
       </div>
     </section>
   );

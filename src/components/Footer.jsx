@@ -5,9 +5,15 @@ const Footer = ({ user }) => {
   return (
     <footer className="footer-section">
       <div className="footer">
-        <Link to="/" className="footer_home-link">
-          <h1 className="footer_heading">শামসুল উলুম মাদরাসা</h1>
-        </Link>
+        <div className="footer_contacts">
+          <Link to="/" className="footer_home-link">
+            <h1 className="footer_heading">শামসুল উলুম মাদরাসা</h1>
+          </Link>
+          <div className="footer_address">চাঁদখালী, পাইকগাছা, খুলনা</div>
+          <div className="footer_phone">+880 1768 509583</div>
+          <div className="footer_phone">+880 1735 475756</div>
+          <div className="footer_email">example@email.com</div>
+        </div>
         <div className="footer_links">
           <ul className="list footer_list">
             <li className="list_item footer_item">
@@ -59,10 +65,6 @@ const Footer = ({ user }) => {
             )}
           </ul>
         </div>
-        {/* <div className="footer_contacts">
-          <div className="footer_phone">+৮৮০ ১৭১১ ১১১১১১</div>
-          <div className="footer_email">example@email.com</div>
-        </div> */}
       </div>
     </footer>
   );

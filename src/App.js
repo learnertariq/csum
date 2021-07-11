@@ -17,6 +17,12 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Me from "./components/Me";
+import TeacherForm from "./components/TeacherForm";
+import NotFound from "./components/NotFound";
+import EditYearForm from "./components/EditYearForm";
+import ViewDocs from "./components/ViewDocs";
+import Documents from "./components/Documents";
+import DocumentUpload from "./components/DocumentUpload";
 import "./App.css";
 
 function App() {
@@ -31,19 +37,25 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/notices/:id" component={NoticeDesc} />
-        <Route path="/committe" component={Committe} />
+        <Route path="/teachers/:id" component={TeacherForm} />
+        <Route path="/teachers" component={Teachers} />
         <Route path="/notices" component={Notice} />
+        <Route path="/committe" component={Committe} />
         <Route path="/result" component={Result} />
         <Route path="/about" component={About} />
         <Route path="/about" component={About} />
-        <Route path="/teachers" component={Teachers} />
         <Route path="/classes" component={Classes} />
         <Route path="/resultUpload" component={ResultUpload} />
         <Route path="/latestNewsUpload" component={LatestNewsUpload} />
+        <Route path="/documentUpload" component={DocumentUpload} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
         <Route path="/me" component={Me} />
+        <Route path="/not-found" component={NotFound} />
+        <Route path="/editYear" component={EditYearForm} />
+        <Route path="/viewDocs" component={ViewDocs} />
+        <Route path="/documents" component={Documents} />
         <Route exact path="/" component={Homepage} />
       </Switch>
       <Footer user={user} />

@@ -11,8 +11,8 @@ html {
 
 /* color pallete */
 :root {
-  --color-primary: #14c354;
-  --color-secondary: #2bb9ff;
+  --color-primary: #10913f;
+  --color-secondary: #1274a5;
   --color-accent: #f9db5b;
   --color-danger: #ff5f64;
   --color-gray: #595959;
@@ -38,13 +38,14 @@ section {
 }
 
 table {
-  width: 100%;
+  min-width: 100%;
+  width: max-content;
 }
 
 table,
 th,
 td {
-  border: 1px solid var(--color-gray);
+  /* border: 1px solid var(--color-gray); */
   border-collapse: collapse;
   text-align: center;
 }
@@ -68,7 +69,7 @@ td {
   width: 100%;
 }
 
-.btn {
+/* .btn {
   padding: 1rem 3rem;
   border-radius: 1rem;
   outline: 0;
@@ -87,7 +88,7 @@ td {
 .btn--danger {
   background-color: var(--color-danger);
   color: var(--color-white);
-}
+} */
 
 .disabled {
   opacity: 0.7;
@@ -115,8 +116,11 @@ td {
     var(--color-primary),
     var(--color-secondary)
   );
-  padding: 1rem 0.5rem 3rem;
+  padding: 0.5rem 0.5rem 1rem;
   color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .nav_home-link {
@@ -127,6 +131,7 @@ td {
   font-size: 2.4rem;
   color: var(--color-white);
   text-shadow: 1px 1px var(--color-danger);
+  margin-top: 0;
 }
 
 .nav_address {
@@ -327,6 +332,12 @@ td {
   margin-left: 1rem;
 }
 
+.footer_contacts {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-right: 2rem;
+}
+
 /* Result section page */
 .result {
   text-align: center;
@@ -439,11 +450,47 @@ td {
 /* teachers info page */
 .teachers-info_heading {
   text-align: center;
-  color: var(--color-danger);
+  color: var(--color-primary);
+  font-size: 1.6rem;
 }
 
 /* classes info page */
 .classes-info_heading {
   text-align: center;
   color: var(--color-danger);
+}
+
+/* Card */
+.card {
+  margin-bottom: 2rem;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card_image-container {
+  background-color: var(--color-secondary);
+  border-radius: 50%;
+  padding: 3rem;
+  width: 7rem;
+  height: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.card_image {
+  font-size: 3.5rem;
+  color: var(--color-white);
+}
+
+.card_download-icon {
+  font-size: 3rem;
+}
+
+/* Documents */
+.documents_cards {
+  padding: 1rem;
 }

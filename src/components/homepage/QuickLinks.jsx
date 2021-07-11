@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 const data = [
   {
+    text: "Documents",
+    link: "/documents",
+  },
+  {
     text: "কমিটি তথ্য",
     link: "/committe",
   },
@@ -16,7 +20,7 @@ const data = [
   },
   {
     text: "হিসাব বিভাগ",
-    link: "",
+    link: "/accounts",
   },
 ];
 

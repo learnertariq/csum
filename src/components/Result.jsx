@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import http from "../service/http";
 import resultService from "../service/resultService";
 
-const Result = () => {
+const Result = ({ history }) => {
   const [uiClassNames, setUiClassNames] = useState([]);
   const [uiYears, setUiYears] = useState([]);
   const [className, setClassName] = useState("");
@@ -23,7 +23,6 @@ const Result = () => {
 
     try {
       const { data } = await resultService.getUiData();
-      console.log(data);
       setUiClassNames(data.data.classNames);
       setUiYears(data.data.years);
       setInitialData(data.data.classNames[0], data.data.years[0]);
@@ -55,6 +54,13 @@ const Result = () => {
       if (ex.response) setError({ hasError: true, msg: ex.response.data.msg });
       setResultLoading(false);
     }
+  };
+
+  const handleViewResult = () => {
+    history.push({
+      pathname: "/viewDocs",
+      state: { pdf },
+    });
   };
 
   return (
@@ -104,21 +110,32 @@ const Result = () => {
 
           <button
             onClick={handleSearch}
-            className="btn btn--primary result_refress-btn"
+            className="btn btn-primary btn-lg result_refress-btn"
           >
             Refress Result
           </button>
           <br />
 
+          <button
+            onClick={handleViewResult}
+            className={`btn btn-primary btn-lg result_refress-btn ${
+              !pdf ? "disabled" : ""
+            }`}
+            disabled={!pdf}
+          >
+            View Result
+          </button>
+          <br />
+
           {resultLoading || !pdf ? (
-            <a className="btn btn--danger result_download-btn disabled">
+            <a className="btn btn-danger btn-lg result_download-btn disabled">
               Download
             </a>
           ) : (
             <a
               href={`data:application/pdf;base64,${pdf}`}
               download="result.pdf"
-              className="btn btn--danger result_download-btn"
+              className="btn btn-danger btn-lg result_download-btn"
             >
               Download
             </a>
